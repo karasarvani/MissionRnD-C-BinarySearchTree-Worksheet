@@ -20,16 +20,55 @@ struct node{
 	struct node * left;
 	int data;
 	struct node *right;
-};
-
-
-void inorder(struct node *root, int *arr){
-	
+}; 
+void inorder1(struct node*root, int *arr, int *index)
+{
+	if (root == NULL)
+		return;
+	if (root != NULL)
+	{
+		inorder1(root->left, arr, index);
+		arr[(*index)++] = root->data;
+		inorder1(root->right, arr, index);
+	}
 }
-void preorder(struct node *root, int *arr){
-	
+void inorder(struct node *root, int *arr){
+	int index = 0;
+	if (root == NULL || arr == NULL)
+		return;
+	inorder1(root, arr, &index);
+}
+void postorder1(struct node*root, int *arr, int *index)
+{
+	if (root == NULL)
+		return;
+	if (root != NULL)
+	{
+		postorder1(root->left, arr, index);
+		postorder1(root->right, arr, index);
+		arr[(*index)++] = root->data;
+	}
 }
 void postorder(struct node *root, int *arr){
-	
+	int index = 0;
+	if (root == NULL || arr == NULL)
+		return;
+	postorder1(root, arr, &index);
 }
-
+void preorder1(struct node*root, int *arr, int *index)
+{
+	if (root == NULL)
+		return;
+	if (root != NULL)
+	{
+		arr[(*index)++] = root->data;
+		preorder1(root->left, arr, index);
+		preorder1(root->right, arr, index);
+	}
+}
+void preorder(struct node *root, int *arr){
+	int index = 0;
+	if (root == NULL || arr == NULL)
+		return;
+	preorder1(root, arr, &index);
+}

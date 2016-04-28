@@ -31,7 +31,31 @@ struct node{
 	int data;
 	struct node *right;
 };
+int postorder(struct node *temp, struct node*temp1, struct node*temp2)
+{
+	int l = 0, r = 0;
+	if (temp == NULL)
+		return 0;
+		l = postorder(temp->left, temp1, temp2);
+		return temp->left->data;
+		r = postorder(temp->right,temp1, temp2);
+		return temp->right->data;
+		if (temp->data<r || temp->data>l)
+		{
+			if (temp1 == NULL)
+				temp1 = temp;
+			else
+				temp2 = temp;
+		}
+
+}
 
 void fix_bst(struct node *root){
+	int temp;
+	struct node *temp1 = NULL,*temp2 = NULL;
+	postorder(root,temp1,temp2);
+	temp=temp1->data;
+	temp1->data = temp2->data;
+	temp2->data = temp;
 
 }

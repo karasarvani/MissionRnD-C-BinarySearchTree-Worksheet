@@ -73,8 +73,8 @@ namespace spec
 
 			return root;
 		}
-		
-		[TestMethod,Timeout(2000)]
+
+		[TestMethod, Timeout(2000)]
 		void Height_Nullcheck(){
 			get_height(NULL);
 			get_left_subtree_sum(NULL);
@@ -83,27 +83,27 @@ namespace spec
 		[TestMethod, Timeout(2000)]
 		void Height_Small(){
 			struct node *root = NULL;
-			int nums[20] = {10,5,15};
+			int nums[20] = { 10, 5, 15 };
 
 			for (int i = 0; i < 3; i++){
 				root = add_node_spec(root, nums[i]);
 			}
 
-			int h=get_height(root);
-			int ls=get_left_subtree_sum(root);
-			int rs=get_right_subtree_sum(root);
+			int h = get_height(root);
+			int ls = get_left_subtree_sum(root);
+			int rs = get_right_subtree_sum(root);
 			int ans[3] = { 2, 5, 15 };
 			int actualans[3] = { h, ls, rs };
 
 			for (int i = 0; i < 3; i++){
-				Assert::AreEqual(ans[i],actualans[i],L"HeightBST Small Failed", 1, 2);
+				Assert::AreEqual(ans[i], actualans[i], L"HeightBST Small Failed", 1, 2);
 			}
 		}
 		[TestMethod, Timeout(2000)]
 		void Height_Medium(){
 			struct node *root = NULL;
-			int nums[20] = { 10, 2,1, 15 ,25,100,300};
-		
+			int nums[20] = { 10, 2, 1, 15, 25, 100, 300 };
+
 			for (int i = 0; i < 7; i++){
 				root = add_node_spec(root, nums[i]);
 			}
@@ -121,7 +121,7 @@ namespace spec
 		[TestMethod, Timeout(2000)]
 		void Height_Large(){
 			struct node *root = NULL;
-			int nums[20] = { 1,2,3,4,5,6,7,8,9,10};
+			int nums[20] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
 			for (int i = 0; i < 10; i++){
 				root = add_node_spec(root, nums[i]);
@@ -131,7 +131,7 @@ namespace spec
 			int ls = get_left_subtree_sum(root);
 			int rs = get_right_subtree_sum(root);
 			//
-			int ans[3] = { 10,0,54};
+			int ans[3] = { 10, 0, 54 };
 
 			int actualans[3] = { h, ls, rs };
 
@@ -139,6 +139,6 @@ namespace spec
 				Assert::AreEqual(ans[i], actualans[i], L"HeightBST Large Failed", 1, 2);
 			}
 		}
-		
+
 	};
 }

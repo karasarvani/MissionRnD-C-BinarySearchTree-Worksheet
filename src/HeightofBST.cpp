@@ -39,18 +39,39 @@ struct node{
 	int data;
 	struct node *right;
 };
-
-
 int get_height(struct node *root){
-
-	return 0;
+	int left_height, right_height;
+	if (root == NULL)
+		return 0;
+	left_height = get_height(root->left);
+	right_height = get_height(root->right);
+	return left_height >= right_height ? left_height+1 : right_height+1;
 }
-
+int get_left_subtree_sum_dup(struct node *root, int left_sum, int right_sum){
+	if (root == NULL)
+		return 0;
+	left_sum = get_left_subtree_sum_dup(root->left,left_sum,right_sum);
+	right_sum = get_left_subtree_sum_dup(root->right,left_sum,right_sum);
+	return left_sum + right_sum + root->data;
+}
 int get_left_subtree_sum(struct node *root){
-	return 0;
+	if (root == NULL)
+		return -1;
+	int left_sum = 0, right_sum = 0,sum=0;
+sum=get_left_subtree_sum_dup(root->left,left_sum,right_sum);
+return sum;
 }
-
+int get_right_subtree_sum_dup(struct node *root, int left_sum, int right_sum){
+	if (root == NULL)
+		return 0;
+	left_sum = get_right_subtree_sum_dup(root->left, left_sum, right_sum);
+	right_sum = get_right_subtree_sum_dup(root->right, left_sum, right_sum);
+	return left_sum + right_sum + root->data;
+}
 int get_right_subtree_sum(struct node *root){
-	return 0;
+	if (root == NULL)
+		return -1;
+	int left_sum = 0, right_sum = 0, sum = 0;
+	sum = get_right_subtree_sum_dup(root->right, left_sum, right_sum);
+	return sum;
 }
-
